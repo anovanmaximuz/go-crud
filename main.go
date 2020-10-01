@@ -58,7 +58,7 @@ func Show(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
     nId := r.URL.Query().Get("id")
     log.Println("Server started on:"+nId)
-    selDB, err := db.Query("SELECT * FROM tbl_user WHERE id=?", nId)
+    selDB, err := db.Query("SELECT id,first_name,email FROM tbl_user WHERE id=?", nId)
     if err != nil {
         panic(err.Error())
     }
@@ -85,7 +85,7 @@ func New(w http.ResponseWriter, r *http.Request) {
 func Edit(w http.ResponseWriter, r *http.Request) {
     db := dbConn()
     nId := r.URL.Query().Get("id")
-    selDB, err := db.Query("SELECT * FROM tbl_user WHERE id=?", nId)
+    selDB, err := db.Query("SELECT id,first_name,email FROM tbl_user WHERE id=?", nId)
     if err != nil {
         panic(err.Error())
     }
